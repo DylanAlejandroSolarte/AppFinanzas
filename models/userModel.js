@@ -239,7 +239,7 @@ async function login(req, res) {
     // Buscar el usuario por correo electrónico y estado activo
     const usuario = await Usuario.findOne({ email });
     // Verificar si el usuario existe y la contraseña es válida
-    if (usuario && bcrypt.compare(pss, usuario.pss)) {
+    if (usuario && await bcrypt.compare(pss, usuario.pss)) {
       // Generar un token con el ID del usuario y la clave de sesión
       const token = generateToken(usuario._id);
 
